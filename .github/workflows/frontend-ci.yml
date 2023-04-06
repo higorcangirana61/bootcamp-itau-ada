@@ -17,7 +17,7 @@ env:
 jobs:
   BuildAndDeploy:
     name: Build frontend app and push to GitHub Packages
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
