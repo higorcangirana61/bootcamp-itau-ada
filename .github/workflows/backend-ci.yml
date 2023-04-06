@@ -1,8 +1,8 @@
-name: Build backend app and push to GitHub Packages
+name: Build frontend app and push to GitHub Packages
 
 defaults:
   run:
-    working-directory: "backend/"
+    working-directory: "frontend/"
 
 on:
   workflow_dispatch:
@@ -16,7 +16,7 @@ env:
 
 jobs:
   BuildAndDeploy:
-    name: Build backend app and push to GitHub Packages
+    name: Build frontend app and push to GitHub Packages
     runs-on: self-hosted
 
     steps:
@@ -24,13 +24,11 @@ jobs:
 
     - name: Getting dependencies
       run: |
-        apt-get update && apt-get -y install maven
+        apt-get update && apt-get -y install npm
+        npm install -g @angular/cli
     - name: Execute tests
       run: |
-        mvn clean test
-    - name: Build Java
-      run: |
-        mvn clean package
+        ng test
     - name: Login to GitHub Container Registry
       uses: docker/login-action@v2
       with:
@@ -38,7 +36,7 @@ jobs:
       username: ${{ github.actor }}
       password: ${{ secrets.PACKAGES_KEY }}
 
-    - name: Build the BACKEND Docker image
+    - name: Build the FRONTEND Docker image
       run: |
-            docker build . --tag ghcr.io/higorcangirana61/backend-app:latest
-            docker push ghcr.io/higorcangirana61/backend-app:latest
+            docker build . --tag ghcr.io/higorcangirana61/frontend-app:latest
+            docker push ghcr.io/higorcangirana61/frontend-app:latest
