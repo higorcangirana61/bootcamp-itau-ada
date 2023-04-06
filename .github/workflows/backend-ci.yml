@@ -24,13 +24,13 @@ jobs:
 
     - name: Getting dependencies
       run: |
-        apt-get update && apt-get -y install maven
+        sudo apt-get update && apt-get -y install maven
     - name: Execute tests
       run: |
-        mvn clean test
+        sudo mvn clean test
     - name: Build Java
       run: |
-        mvn clean package
+        sudo mvn clean package
     - name: Login to GitHub Container Registry
       uses: docker/login-action@v2
       with:
