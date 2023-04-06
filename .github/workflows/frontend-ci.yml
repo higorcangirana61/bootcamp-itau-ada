@@ -11,7 +11,7 @@ on:
     - main
 
 env:
-  PACKAGES_KEY ${{ secrets.PACKAGES_KEY }}
+  PACKAGES_KEY: ${{ secrets.PACKAGES_KEY }}
   
 
 jobs:
@@ -32,9 +32,9 @@ jobs:
     - name: Login to GitHub Container Registry
       uses: docker/login-action@v2
       with:
-      registry: ghcr.io
-      username: ${{ github.actor }}
-      password: ${{ secrets.PACKAGES_KEY }}
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.PACKAGES_KEY }}
 
     - name: Build the FRONTEND Docker image
       run: |
