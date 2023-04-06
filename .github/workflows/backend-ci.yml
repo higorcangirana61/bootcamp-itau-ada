@@ -11,7 +11,7 @@ on:
     - main
 
 env:
-  PACKAGES_KEY ${{ secrets.PACKAGES_KEY }}
+  PACKAGES_KEY: ${{ secrets.PACKAGES_KEY }}
   
 
 jobs:
