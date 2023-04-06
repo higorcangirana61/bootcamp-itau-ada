@@ -9,8 +9,6 @@ on:
   push:
     branches:
     - main
-    paths:
-    - 'backend/**'
 
 env:
   PACKAGES_KEY ${{ secrets.PACKAGES_KEY }}
